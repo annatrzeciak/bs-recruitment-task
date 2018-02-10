@@ -1,19 +1,23 @@
 import { Component, OnInit } from "@angular/core";
-
+import { MoviesService } from "../../services/movies.service";
+import { Movie } from "../../models/movie";
 
 @Component({
-    selector: 'app-movies',
-    templateUrl: './movies.component.html',
-    styleUrls: ['./movies.component.scss']
+  selector: "app-movies",
+  templateUrl: "./movies.component.html",
+  styleUrls: ["./movies.component.scss"]
 })
-
 export class MoviesComponent implements OnInit {
-    
-    constructor() {
-    }
+  movies: Movie[] = [];
+  result;
+  constructor(private moviesService: MoviesService) {}
 
-    ngOnInit() {
-        
-    }
-    
+  ngOnInit() {
+    this.loadMovies();
+  }
+  loadMovies() {
+    this.moviesService.getMovies().subscribe(result => {
+      this.movies = result;
+    });
+  }
 }

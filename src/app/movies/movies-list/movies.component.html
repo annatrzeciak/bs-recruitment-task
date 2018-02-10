@@ -1,1 +1,6 @@
-movies
+<div class="container">
+    <div class="white_box">
+        <h4 class="page_title text-center">Lista filmów</h4>
+        <div *ngFor='let movie of movies' class="list_item">{{movie.Title}}</div>
+    </div>
+</div>
