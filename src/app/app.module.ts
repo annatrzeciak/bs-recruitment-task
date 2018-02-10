@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {NgxPaginationModule} from 'ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core-module/core.module';
@@ -20,7 +20,8 @@ import { UsersService } from './services/users.service';
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    NgxPaginationModule
   ],
   providers: [MoviesService,UsersService],
   bootstrap: [AppComponent]

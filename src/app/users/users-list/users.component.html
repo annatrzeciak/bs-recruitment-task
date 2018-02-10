@@ -1,6 +1,10 @@
 <div class="container">
     <div class="white_box">
         <h4 class="page_title text-center">Lista użytkowników</h4>
-        <div class="item" *ngFor='let user of users'>{{user.FirstName}}</div>
+        <div class="item" *ngFor='let user of users | paginate: config'>{{user.FirstName}}</div>
+        <div>
+            <pagination-controls class='d-flex justify-content-center' [id]="config.id" [maxSize]="maxSize" [autoHide]="autoHide" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls>
+        </div>
+
     </div>
 </div>

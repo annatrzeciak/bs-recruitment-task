@@ -9,7 +9,6 @@ import { Movie } from "../../models/movie";
 })
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
-  result;
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit() {

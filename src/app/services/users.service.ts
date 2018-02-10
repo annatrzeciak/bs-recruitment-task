@@ -17,5 +17,6 @@ export class UsersService {
     let opts = new RequestOptions();
     opts.headers = headers;
     return this.http.get(this.url, opts).map(data => data.json());
+    
   }
 }
