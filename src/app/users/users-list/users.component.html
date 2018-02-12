@@ -1,10 +1,47 @@
 <div class="container">
     <div class="white_box">
-        <h4 class="page_title text-center">Lista użytkowników</h4>
-        <div class="item" *ngFor='let user of users | paginate: config'>{{user.FirstName}}</div>
-        <div>
-            <pagination-controls class='d-flex justify-content-center' [id]="config.id" [maxSize]="maxSize" [autoHide]="autoHide" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls>
+        <div class="text-right">
+            <button [routerLink]="['/addUser']" class="btn btn-success"><img class='icon'src="../../../assets/img/add.png"> new user</button>
         </div>
+        <h4 class="page_title text-center font-weight-bold mb-2">Users list</h4>
+        <app-spinner *ngIf="loading"></app-spinner>
+        <div class="col-lg-8 offset-lg-2">
+            <div class="item" *ngFor='let user of users | paginate: config'>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h5 *ngIf='user.Username.length!=0;else noUsername' class="username text-wrap font-weight-bold text-primary">{{user.Username}}</h5>
+                                <ng-template #noUsername>
+                                    <h5 class="username text-wrap font-weight-bold text-primary">N/A</h5>
+                                </ng-template>
+                                <p class='firstname'>{{user.FirstName}} {{user.LastName}}</p>
+                            </div>
+                            <div class="col-md-7 ">
+                                <p *ngIf='user.Birthday.length!=0;else noBirthday' class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="../../../assets/img/stork.png" alt="">{{user.Birthday|date:'yyyy-MM-dd'}}</p>
+                                <ng-template #noBirthday>
+                                    <p class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="../../../assets/img/stork.png" alt="">N/A</p>
+                                </ng-template>
+                                <p *ngIf='user.Email.length!=0; else noEmail' class="email">
+                                    <a class=" d-flex flex-nowrap" href="mailto:{{user.Email}}"><img class='icon' src="../../../assets/img/email.png" alt="">{{user.Email}}</a>
+                                </p>
+                                <ng-template #noEmail>
+                                    <p class="email">
+                                        <a class=" d-flex flex-nowrap" href=""><img class='icon' src="../../../assets/img/email.png" alt="">N/A</a>
+                                    </p>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 text-right">
+                        <button (click)='editUser(user)' class="btn btn-success btn_edit"><img src="../../../assets/img/edit.png" alt=""></button><br>
+                        <button (click)='deleteUser(user)' class="btn btn-danger btn_delete"><img src="../../../assets/img/delete.png" alt=""></button>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        <pagination-controls class='d-flex justify-content-center' [id]="config.id" [maxSize]="maxSize" [autoHide]="autoHide" [previousLabel]="labels.previousLabel" [nextLabel]="labels.nextLabel" (pageChange)="onPageChange($event)"></pagination-controls>
     </div>
+
 </div>

@@ -1,8 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'assets/variables.scss';
+@import "assets/variables.scss";
 body {
-    font-family: 'Montserrat', sans-serif;
+    transition: all 0.5s linear;
+    font-family: "Montserrat", sans-serif;
+    overflow-y: scroll;
     .white_box {
         margin: 25px;
         padding: 25px;
@@ -10,22 +12,70 @@ body {
         -webkit-box-shadow: 0px 0px 42px 0px rgba(0, 0, 0, 0.33);
         -moz-box-shadow: 0px 0px 42px 0px rgba(0, 0, 0, 0.33);
         box-shadow: 0px 0px 42px 0px rgba(0, 0, 0, 0.33);
+        .item {
+            border-bottom: 0.5px solid #868e96;
+            padding: 10px 3px 0;
+            &:hover {
+                background: #eeeeee;
+            }
+        }
+        .btn_edit {
+            margin-bottom: 8px;
+            img {
+                height: 20px;
+            }
+        }
+        .btn_delete {
+            margin-bottom: 8px;
+            img {
+                height: 20px;
+            }
+        }
+        .email {
+            overflow-x: visible a {
+                letter-spacing: -0.5px;
+            }
+        }
+        .icon {
+            vertical-align: middle;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    }
+    .btn {
+        cursor: pointer;
+        border-radius: 0;
+        margin-left: 5px;
+        margin-right: 5px;
     }
 }
 
-@media (max-width:450px) {
+@media (max-width: 500px) {
+    .icon {
+        width: 25px;
+        height: 25px;
+        margin-right: 7px;
+    }
+}
+
+@media (max-width: 450px) {
     body {
         .white_box {
-            margin: 15px;
-            padding: 15px;
+            padding: 15px 7px;
+            margin: 10px 0px;
         }
     }
 }
 
-@media (max-width:350px) {
+@media (max-width: 350px) {
     body {
         .white_box {
-            margin: 10px 0px;
+            .icon {
+                width: 15px;
+                height: 15px;
+                margin-right: 4px;
+            }
         }
     }
 }

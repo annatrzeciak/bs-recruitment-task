@@ -1,18 +1,18 @@
 <div class="container">
     <div class="white_box">
 
-        <h4 class="page_title text-center font-weight-bold mb-2">Edit user</h4>
+        <h4 class="page_title text-center font-weight-bold mb-2">Add user</h4>
         <div class="col-md-6 offset-md-3">
-            <form [formGroup]="userEditForm">
+            <form [formGroup]="userAddForm">
                 <div class="form-group">
                     <label>First name</label>
                     <input formControlName='firstName' type="text" class="form-control" placeholder="John">
-                    <div class="alert alert-danger" *ngIf='  (formHasErrors && userEditForm.controls.firstName.errors)||(userEditForm.controls.firstName.touched && userEditForm.controls.firstName.errors)'>Required field</div>
-
+                    <div class="alert alert-danger" *ngIf='  (formHasErrors && userAddForm.controls.firstName.errors)||(userAddForm.controls.firstName.touched && userAddForm.controls.firstName.errors)'>Required field</div>
                 </div>
                 <div class="form-group">
                     <label>Last name</label>
                     <input formControlName='lastName' type="text" class="form-control" placeholder="House">
+
                 </div>
                 <div class="form-group">
                     <label>Username</label>
@@ -24,11 +24,11 @@
                 </div>
                 <div class="form-group">
                     <label>Birthday</label>
-                    <input formControlName='birthday' type="text" class="form-control" [value]="user.Birthday|date:'yyyy-MM-dd'">
+                    <input formControlName='birthday' type="date" class="form-control">
                 </div>
                 <div class="buttons-container d-flex justify-content-center ">
-                    <button (click)='updateUser()' class="button btn btn-primary">Save</button>
-                    <button [routerLink]="['/users']" class="button btn btn-secondary">Cancel</button>
+                    <button (click)='addUser()' class="button btn btn-primary ">Save</button>
+                    <button [routerLink]="[ '/users'] " class="button btn btn-secondary ">Cancel</button>
                 </div>
             </form>
         </div>

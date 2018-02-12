@@ -10,20 +10,31 @@ import { UsersComponent } from './users/users-list/users.component';
 import { HttpModule } from '@angular/http';
 import { MoviesService } from './services/movies.service';
 import { UsersService } from './services/users.service';
-
+import { SpinnerComponent } from './spinner/spinner.component';
+import { RouterModule } from '@angular/router';
+import { UserResolve } from './users/user-resolve.service';
+import { UserRoutingModule } from './users/users-routing.module';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { UserDeleteComponent } from './users/user-delete/user-delete.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserAddComponent } from './users/user-add/user-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent,MoviesComponent,UsersComponent
+    AppComponent,MoviesComponent,UsersComponent,UserAddComponent,UserEditComponent,UserDeleteComponent,SpinnerComponent
   ],
   imports: [
     BrowserModule,
     CoreModule,
     AppRoutingModule,
     HttpModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouterModule,
+    UserRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [MoviesService,UsersService],
+  providers: [MoviesService,UsersService, UserResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
