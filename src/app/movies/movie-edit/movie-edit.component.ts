@@ -1,5 +1,5 @@
 import { Movie } from "../../models/movie";
-import { OnInit, Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 import {
   FormGroup,
   FormBuilder,
@@ -8,13 +8,15 @@ import {
 } from "@angular/forms";
 import { MoviesService } from "../../services/movies.service";
 import { Router, ActivatedRoute } from "@angular/router";
+import { Response } from "@angular/http/src/static_response";
 
 @Component({
   selector: "app-movie-edit",
   templateUrl: "./movie-edit.component.html",
   styleUrls: ["./movie-edit.component.scss"]
 })
-export class MovieEditComponent implements OnInit {
+export class MovieEditComponent {
+  private message = "";
   private movie: Movie;
   private movieEditForm: FormGroup;
   private formHasErrors: boolean = false;
@@ -22,46 +24,44 @@ export class MovieEditComponent implements OnInit {
     private movieService: MoviesService,
     private router: Router,
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute
-  ) {}
-
-  ngOnInit() {
+    private route: ActivatedRoute,
+    @Inject(FormBuilder) fb: FormBuilder
+  ) {
     this.movie = new Movie();
     this.loadMovie();
-    this.movieEditForm = this.buildMovieEditForm();
-  }
-  loadMovie() {
-    this.movie = this.route.snapshot.data["movie"];
-  }
-  buildMovieEditForm() {
-    return this.formBuilder.group({
-      title: new FormControl(this.movie.Title, [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(16)
-      ]),
-      year: new FormControl(this.movie.Year),
-      director: new FormControl(this.movie.Director),
-      rating: new FormControl(this.movie.Rating)
+    this.movieEditForm = fb.group({
+      title: [
+        this.movie.Title,
+        [Validators.required, Validators.minLength(3), Validators.maxLength(16)]
+      ],
+      year: this.movie.Year,
+      director: this.movie.Director,
+      rating: this.movie.Rating
     });
   }
-  setMovieValue() {
+  loadMovie(): void {
+    this.movie = this.route.snapshot.data["movie"];
+  }
+  setMovieValue(): void {
     this.movie.Title = this.movieEditForm.value.title;
     this.movie.Year = this.movieEditForm.value.year;
     this.movie.Director = this.movieEditForm.value.director;
     this.movie.Rating = this.movieEditForm.value.rating;
   }
-  updateMovie() {
+  updateMovie(): void {
     if (this.movieEditForm.invalid) {
       this.formHasErrors = true;
     } else {
       this.setMovieValue();
 
       this.formHasErrors = false;
-      this.movieService.updateMovie(this.movie.Id, this.movie).subscribe(() => {
-        this.router.navigate(["/movies"]);
-        this.movieEditForm.reset();
-      });
+      this.movieService
+        .updateMovie(this.movie.Id, this.movie)
+        .then(result => this.router.navigate(["/movies"]))
+        .catch(error => this.showMessage(error));
     }
+  }
+  showMessage(message:Response) {
+    this.message = message.status + " " + message.statusText;
   }
 }

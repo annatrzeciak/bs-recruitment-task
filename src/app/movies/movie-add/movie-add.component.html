@@ -1,5 +1,6 @@
 <div class="container">
     <div class="white_box">
+        <div class="alert alert-danger" *ngIf='message.length>0'>Error!: {{message}}</div>
         <h4 class="page_title text-center font-weight-bold mb-2">Add movie</h4>
         <div class="col-md-6 offset-md-3">
             <form [formGroup]="movieAddForm">
@@ -9,16 +10,16 @@
                     <div class="alert alert-danger" *ngIf='  (formHasErrors && movieAddForm.controls.title.errors)||(movieAddForm.controls.title.touched && movieAddForm.controls.title.errors)'>Required field</div>
                 </div>
                 <div class="form-group">
-                    <label>Year</label>
+                    <label><img class='icon ' src="assets/img/year.png" alt="">Year</label>
                     <input formControlName='year' type="number" class="form-control">
 
                 </div>
                 <div class="form-group">
-                    <label>Director</label>
+                    <label><img class='icon ' src="assets/img/director.png" alt="">Director</label>
                     <input formControlName='director' type="text" class="form-control" placeholder="John House">
                 </div>
                 <div class="form-group">
-                    <label>Rating</label>
+                    <label><img class='icon ' src="assets/img/star-yellow.png" alt="">Rating</label>
                     <input formControlName='rating' type="number" min='0' max='10' step="1" value='0' class="form-control">
                 </div>
 

@@ -1,32 +1,34 @@
 import { Component } from "@angular/core";
-import { OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Movie } from "../../models/movie";
 import { MoviesService } from "../../services/movies.service";
+import { Response } from "@angular/http/src/static_response";
 
 @Component({
   selector: "app-movie-delete",
   templateUrl: "./movie-delete.component.html",
   styleUrls: ["./movie-delete.component.scss"]
 })
-export class MovieDeleteComponent implements OnInit {
-  movie: Movie;
+export class MovieDeleteComponent {
+  private message: string = "";
+  private movie: Movie;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private movieService: MoviesService
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.loadMovie();
   }
-  loadMovie() {
+  loadMovie(): void {
     this.movie = this.route.snapshot.data["movie"];
   }
-  deleteMovie() {
-    this.movieService.deleteMovie(this.movie.Id).subscribe(() => {
-      this.router.navigate(["/movies"]);
-    });
+  deleteMovie(): void {
+    this.movieService
+      .deleteMovie(this.movie.Id)
+      .then(result => this.router.navigate(["/movies"]))
+      .catch(error => this.showMessage(error));
+  }
+  showMessage(message: Response): void {
+    this.message = message.status + " " + message.statusText;
   }
 }

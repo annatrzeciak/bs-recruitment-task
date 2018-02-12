@@ -1,7 +1,8 @@
 <div class="container">
     <div class="white_box">
+        <div class="alert alert-danger" *ngIf='message.length>0'>Error!: {{message}}</div>
         <div class="text-right">
-            <button [routerLink]="['/addMovie']" class="btn btn-success"><img class='icon'src="../../../assets/img/add.png">new movie</button>
+            <button [routerLink]="['/addMovie']" class="btn btn-success"><img class='icon'src="assets/img/add.png">new movie</button>
         </div>
         <h4 class="page_title text-center font-weight-bold my-4">Movies list</h4>
         <app-spinner *ngIf="loading"></app-spinner>
@@ -12,9 +13,9 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <h5 class="movie_title text-wrap font-weight-bold text-primary">{{movie.Title}}</h5>
-                                <p class='movie_rating font-weight-bold'>
-                                    Rating: {{ movie.Rating}}/10
-                                </p>
+                                <h6 class='movie_rating font-weight-bold'>
+                                    <img class='icon ' src="assets/img/star-yellow.png" alt="">{{ movie.Rating}}
+                                </h6>
                             </div>
                             <div class="col-md-4 ">
                                 <p *ngIf='movie.Director.length!=0;else noDirector' class="movie_director d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/director.png" alt="">{{movie.Director}}</p>

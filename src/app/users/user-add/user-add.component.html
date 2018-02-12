@@ -1,7 +1,9 @@
 <div class="container">
     <div class="white_box">
+        <div class="alert alert-danger" *ngIf='message.length>0'>Error!: {{message}}</div>
 
         <h4 class="page_title text-center font-weight-bold mb-2">Add user</h4>
+        <div></div>
         <div class="col-md-6 offset-md-3">
             <form [formGroup]="userAddForm">
                 <div class="form-group">
@@ -19,11 +21,11 @@
                     <input formControlName='username' type="text" class="form-control" placeholder="johnh">
                 </div>
                 <div class="form-group">
-                    <label>Email</label>
+                    <label><img class='icon'src="assets/img/email.png">Email</label>
                     <input formControlName='email' type="email" class="form-control" placeholder="john.house@example.com">
                 </div>
                 <div class="form-group">
-                    <label>Birthday</label>
+                    <label><img class='icon'src="assets/img/stork.png">Birthday</label>
                     <input formControlName='birthday' type="date" class="form-control">
                 </div>
                 <div class="buttons-container d-flex justify-content-center ">

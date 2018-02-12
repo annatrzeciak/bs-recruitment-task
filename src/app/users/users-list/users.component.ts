@@ -1,8 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
-  OnInit
+  Input
 } from "@angular/core";
 import { UsersService } from "../../services/users.service";
 import { User } from "../../models/user";
@@ -14,9 +13,10 @@ import { Router } from "@angular/router";
   templateUrl: "./users.component.html",
   styleUrls: ["./users.component.scss"]
 })
-export class UsersComponent implements OnInit {
-  users: User[] = new Array();
-  loading: boolean = true;
+export class UsersComponent {
+  private message: string = "";
+  private users: User[] = [];
+  private loading: boolean = true;
   public maxSize: number = 7;
   public directionLinks: boolean = true;
   public autoHide: boolean = false;
@@ -30,32 +30,33 @@ export class UsersComponent implements OnInit {
     nextLabel: ""
   };
   constructor(private usersService: UsersService, private router: Router) {
+    this.users=new Array<User>();
     this.loading = true;
+    this.getUsers();
   }
-  onPageChange(number: number) {
+  onPageChange(number: number): void {
     this.loading = true;
     this.config.currentPage = number;
     this.loading = false;
   }
-
-  ngOnInit() {
-    this.getUsers();
-  
-  }
-
-  getUsers() {
+  getUsers(): void {
     this.loading = true;
-    this.usersService.getUsers().subscribe(result => {
-      this.users = result.Data;
-      this.loading = false;
-    });
+    this.usersService
+      .getUsers()
+      .then(result => {
+        this.users = result.Data;
+        this.loading = false;
+      })
+      .catch(error => this.showMessage(error));
+  }
+  showMessage(message: Response): void {
+    this.message = message.status + " " + message.statusText;
   }
 
-  editUser(user: User) {
-      this.router.navigate(['/editUser', user.Id]);
-
+  editUser(user: User): void {
+    this.router.navigate(["/editUser", user.Id]);
   }
-  deleteUser(user: User) {
-    this.router.navigate(['/deleteUser', user.Id]);
+  deleteUser(user: User): void {
+    this.router.navigate(["/deleteUser", user.Id]);
   }
 }
