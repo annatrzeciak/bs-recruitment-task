@@ -19,10 +19,7 @@
                                 <p class='firstname'>{{user.FirstName}} {{user.LastName}}</p>
                             </div>
                             <div class="col-md-7 overflow_visible">
-                                <p *ngIf='user.Birthday.length!=0;else noBirthday' class="birthday d-flex flex-nowrap text-nowrap"><img class='icon icon_email' src="assets/img/stork.png" alt="">{{user.Birthday|date:'yyyy-MM-dd'}}</p>
-                                <ng-template #noBirthday>
-                                    <p class="birthday d-flex flex-nowrap"><img class='icon ' src="assets/img/stork.png" alt="">N/A</p>
-                                </ng-template>
+                                <p class="birthday d-flex flex-nowrap text-nowrap"><img class='icon icon_email' src="assets/img/stork.png" alt="">{{user.Birthday|date:'yyyy-MM-dd'}}</p>
                                 <p *ngIf='user.Email.length!=0; else noEmail' class="email">
                                     <a class=" d-flex flex-nowrap" href="mailto:{{user.Email}}"><img class='icon' src="assets/img/email.png" alt="">{{user.Email}}</a>
                                 </p>

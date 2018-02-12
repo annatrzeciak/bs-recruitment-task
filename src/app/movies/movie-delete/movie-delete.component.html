@@ -16,13 +16,9 @@
                         <ng-template #noDirector>
                             <p class="movie_director d-flex flex-nowrap"><img class='icon ' src="assets/img/director.png" alt="">N/A</p>
                         </ng-template>
-                        <p *ngIf='movie.Year.length!=0; else noYear' class="movie_year"><img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
+                        <p class="movie_year"><img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
                         </p>
-                        <ng-template #noYear>
-                            <p class="movie_year">
-                                <img class='icon ' src="assets/img/year.png" alt="">N/A
-                            </p>
-                        </ng-template>
+
                     </div>
                 </div>
                 <h6 class='text-center font-weight-bold w-100 my-4'>Are you sure?</h6>
