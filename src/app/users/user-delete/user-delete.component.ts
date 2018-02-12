@@ -12,8 +12,8 @@ import { Response } from "@angular/http/src/static_response";
   styleUrls: ["./user-delete.component.scss"]
 })
 export class UserDeleteComponent {
-  private message: string = "";
-  private user: User;
+   message: string = "";
+   user: User;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

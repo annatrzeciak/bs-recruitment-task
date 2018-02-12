@@ -11,15 +11,13 @@ import { Response } from "@angular/http/src/static_response";
   styleUrls: ["./user-edit.component.scss"]
 })
 export class UserEditComponent {
-  private message: string = "";
-  private user: User;
-  private userEditForm: FormGroup;
-  private formHasErrors = false;
-
+  message: string = "";
+  user: User;
+  userEditForm: FormGroup;
+  formHasErrors = false;
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     @Inject(FormBuilder) fb: FormBuilder
   ) {

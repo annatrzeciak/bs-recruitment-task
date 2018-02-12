@@ -11,14 +11,14 @@ import { Response } from "@angular/http/src/static_response";
   styleUrls: ["./user-add.component.scss"]
 })
 export class UserAddComponent {
-  private message: string = "";
-  private user: User;
-  private userAddForm: FormGroup;
-  private formHasErrors: boolean = false;
+   message: string = "";
+   user: User;
+  userAddForm: FormGroup;
+   formHasErrors: boolean = false;
   constructor(
     private usersService: UsersService,
     private router: Router,
-    private formBuilder: FormBuilder,
+   
     private route: ActivatedRoute,
     @Inject(FormBuilder) fb: FormBuilder
   ) {

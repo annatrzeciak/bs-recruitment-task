@@ -16,14 +16,13 @@ import { Response } from "@angular/http/src/static_response";
   styleUrls: ["./movie-edit.component.scss"]
 })
 export class MovieEditComponent {
-  private message = "";
-  private movie: Movie;
-  private movieEditForm: FormGroup;
-  private formHasErrors: boolean = false;
+   message = "";
+   movie: Movie;
+  movieEditForm: FormGroup;
+   formHasErrors: boolean = false;
   constructor(
     private movieService: MoviesService,
     private router: Router,
-    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     @Inject(FormBuilder) fb: FormBuilder
   ) {
@@ -61,7 +60,7 @@ export class MovieEditComponent {
         .catch(error => this.showMessage(error));
     }
   }
-  showMessage(message:Response) {
+  showMessage(message: Response) {
     this.message = message.status + " " + message.statusText;
   }
 }

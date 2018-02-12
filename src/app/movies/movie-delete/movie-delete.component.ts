@@ -10,8 +10,8 @@ import { Response } from "@angular/http/src/static_response";
   styleUrls: ["./movie-delete.component.scss"]
 })
 export class MovieDeleteComponent {
-  private message: string = "";
-  private movie: Movie;
+   message: string = "";
+   movie: Movie;
   constructor(
     private router: Router,
     private route: ActivatedRoute,

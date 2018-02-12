@@ -10,9 +10,9 @@ import { Response } from "@angular/http";
   styleUrls: ["./movies.component.scss"]
 })
 export class MoviesComponent {
-  private message: string = "";
-  private movies: Movie[] = [];
-  private loading: boolean = true;
+   message: string = "";
+   movies: Movie[] = [];
+   loading: boolean = true;
   constructor(private moviesService: MoviesService, private router: Router) {
     this.loading = true;
     this.loadMovies();

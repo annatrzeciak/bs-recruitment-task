@@ -14,9 +14,9 @@ import { Router } from "@angular/router";
   styleUrls: ["./users.component.scss"]
 })
 export class UsersComponent {
-  private message: string = "";
-  private users: User[] = [];
-  private loading: boolean = true;
+   message: string = "";
+   users: User[] = [];
+   loading: boolean = true;
   public maxSize: number = 7;
   public directionLinks: boolean = true;
   public autoHide: boolean = false;
