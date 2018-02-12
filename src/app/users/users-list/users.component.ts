@@ -14,6 +14,7 @@ import { Router } from "@angular/router";
   styleUrls: ["./users.component.scss"]
 })
 export class UsersComponent {
+  searchText: string;
    message: string = "";
    users: User[] = [];
    loading: boolean = true;

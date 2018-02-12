@@ -2,6 +2,7 @@
     "name": "bs-recruitment-task",
     "version": "0.0.0",
     "license": "MIT",
+    "deploy": "ng build --prod && firebase deploy",
     "scripts": {
         "ng": "ng",
         "start": "ng serve",

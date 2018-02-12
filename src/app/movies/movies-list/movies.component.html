@@ -2,12 +2,23 @@
     <div class="white_box">
         <div class="alert alert-danger" *ngIf='message.length>0'>Error!: {{message}}</div>
         <div class="text-right">
-            <button [routerLink]="['/addMovie']" class="btn btn-success"><img class='icon'src="assets/img/add.png">new movie</button>
+            <button [routerLink]="['/addMovie']" class="btn btn-success">
+        <img class='icon' src="assets/img/add.png">new movie</button>
         </div>
         <h4 class="page_title text-center font-weight-bold my-4">Movies list</h4>
         <app-spinner *ngIf="loading"></app-spinner>
         <div class="col-lg-8 offset-lg-2">
-            <div class="item" *ngFor='let movie of movies; let i = index'>
+
+            <div class="d-flex column">
+                <label for="colFormLabelSm" class="mr-2 col-form-label col-form-label">
+          <img class='icon' src="assets/img/search.png">Search</label>
+
+                <input [(ngModel)]="searchText" type="text" class=" col-8 form-control form-control" id="colFormLabelSm" placeholder="enter title or director">
+
+            </div>
+
+
+            <div class="item" *ngFor='let movie of movies | filterMovies : searchText'>
                 <div class="row">
                     <div class="col-9">
                         <div class="row">
@@ -18,19 +29,27 @@
                                 </h6>
                             </div>
                             <div class="col-md-4 ">
-                                <p *ngIf='movie.Director.length!=0;else noDirector' class="movie_director d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/director.png" alt="">{{movie.Director}}</p>
+                                <p *ngIf='movie.Director.length!=0;else noDirector' class="movie_director d-flex flex-nowrap">
+                                    <img class='icon icon_email' src="assets/img/director.png" alt="">{{movie.Director}}</p>
                                 <ng-template #noDirector>
-                                    <p class="movie_director d-flex flex-nowrap"><img class='icon ' src="assets/img/director.png" alt="">N/A</p>
+                                    <p class="movie_director d-flex flex-nowrap">
+                                        <img class='icon ' src="assets/img/director.png" alt="">N/A</p>
                                 </ng-template>
-                                <p class="movie_year"><img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
+                                <p class="movie_year">
+                                    <img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
                                 </p>
 
                             </div>
                         </div>
                     </div>
                     <div class="col-3 text-right">
-                        <button (click)='editMovie(movie)' class="btn btn-success btn_edit"><img src="assets/img/edit.png" alt=""></button><br>
-                        <button (click)='deleteMovie(movie)' class="btn btn-danger btn_delete"><img src="assets/img/delete.png" alt=""></button>
+                        <button (click)='editMovie(movie)' class="btn btn-success btn_edit">
+              <img src="assets/img/edit.png" alt="">
+            </button>
+                        <br>
+                        <button (click)='deleteMovie(movie)' class="btn btn-danger btn_delete">
+              <img src="assets/img/delete.png" alt="">
+            </button>
                     </div>
                 </div>
 

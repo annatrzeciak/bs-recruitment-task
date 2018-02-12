@@ -7,7 +7,15 @@
         <h4 class="page_title text-center font-weight-bold my-4">Users list</h4>
         <app-spinner *ngIf="loading"></app-spinner>
         <div class="col-lg-8 offset-lg-2">
-            <div class="item" *ngFor='let user of users | paginate: config'>
+
+            <div class="d-flex column">
+                <label for="colFormLabelSm" class="mr-2 col-form-label col-form-label">
+              <img class='icon' src="assets/img/search.png">Search</label>
+
+                <input [(ngModel)]="searchText" type="text" class=" col-8 form-control form-control" id="colFormLabelSm" placeholder="enter username, firstname, lastname or email">
+
+            </div>
+            <div class="item" *ngFor='let user of users|filterUsers:searchText | paginate: config '>
                 <div class="row">
                     <div class="col-9">
                         <div class="row">

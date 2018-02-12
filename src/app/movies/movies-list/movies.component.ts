@@ -10,6 +10,7 @@ import { Response } from "@angular/http";
   styleUrls: ["./movies.component.scss"]
 })
 export class MoviesComponent {
+  searchText: string;
    message: string = "";
    movies: Movie[] = [];
    loading: boolean = true;
