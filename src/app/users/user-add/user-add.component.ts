@@ -27,7 +27,6 @@ export class UserAddComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
-  
     this.userAddForm = this.buildUserAddForm();
   }
 

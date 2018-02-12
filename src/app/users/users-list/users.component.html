@@ -3,7 +3,7 @@
         <div class="text-right">
             <button [routerLink]="['/addUser']" class="btn btn-success"><img class='icon'src="../../../assets/img/add.png"> new user</button>
         </div>
-        <h4 class="page_title text-center font-weight-bold mb-2">Users list</h4>
+        <h4 class="page_title text-center font-weight-bold my-4">Users list</h4>
         <app-spinner *ngIf="loading"></app-spinner>
         <div class="col-lg-8 offset-lg-2">
             <div class="item" *ngFor='let user of users | paginate: config'>
@@ -18,24 +18,24 @@
                                 <p class='firstname'>{{user.FirstName}} {{user.LastName}}</p>
                             </div>
                             <div class="col-md-7 ">
-                                <p *ngIf='user.Birthday.length!=0;else noBirthday' class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="../../../assets/img/stork.png" alt="">{{user.Birthday|date:'yyyy-MM-dd'}}</p>
+                                <p *ngIf='user.Birthday.length!=0;else noBirthday' class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/stork.png" alt="">{{user.Birthday|date:'yyyy-MM-dd'}}</p>
                                 <ng-template #noBirthday>
-                                    <p class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="../../../assets/img/stork.png" alt="">N/A</p>
+                                    <p class="birthday d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/stork.png" alt="">N/A</p>
                                 </ng-template>
                                 <p *ngIf='user.Email.length!=0; else noEmail' class="email">
-                                    <a class=" d-flex flex-nowrap" href="mailto:{{user.Email}}"><img class='icon' src="../../../assets/img/email.png" alt="">{{user.Email}}</a>
+                                    <a class=" d-flex flex-nowrap" href="mailto:{{user.Email}}"><img class='icon' src="assets/img/email.png" alt="">{{user.Email}}</a>
                                 </p>
                                 <ng-template #noEmail>
                                     <p class="email">
-                                        <a class=" d-flex flex-nowrap" href=""><img class='icon' src="../../../assets/img/email.png" alt="">N/A</a>
+                                        <a class=" d-flex flex-nowrap" href=""><img class='icon' src="assets/img/email.png" alt="">N/A</a>
                                     </p>
                                 </ng-template>
                             </div>
                         </div>
                     </div>
                     <div class="col-3 text-right">
-                        <button (click)='editUser(user)' class="btn btn-success btn_edit"><img src="../../../assets/img/edit.png" alt=""></button><br>
-                        <button (click)='deleteUser(user)' class="btn btn-danger btn_delete"><img src="../../../assets/img/delete.png" alt=""></button>
+                        <button (click)='editUser(user)' class="btn btn-success btn_edit"><img src="assets/img/edit.png" alt=""></button><br>
+                        <button (click)='deleteUser(user)' class="btn btn-danger btn_delete"><img src="assets/img/delete.png" alt=""></button>
                     </div>
                 </div>
 

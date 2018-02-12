@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="white_box">
+
+        <h4 class="page_title text-center font-weight-bold mb-4">Delete movie</h4>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="row">
+                    <div class="col-md-7 ">
+                        <h5 class="movie_title text-wrap font-weight-bold text-primary">{{movie.Title}}</h5>
+                        <p class='movie_rating font-weight-bold'>
+                            Rating: {{ movie.Rating}}/10
+                        </p>
+                    </div>
+                    <div class="col-md-5 ">
+                        <p *ngIf='movie.Director.length!=0;else noDirector' class="movie_director d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/director.png" alt="">{{movie.Director}}</p>
+                        <ng-template #noDirector>
+                            <p class="movie_director d-flex flex-nowrap"><img class='icon ' src="assets/img/director.png" alt="">N/A</p>
+                        </ng-template>
+                        <p *ngIf='movie.Year.length!=0; else noYear' class="movie_year"><img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
+                        </p>
+                        <ng-template #noYear>
+                            <p class="movie_year">
+                                <img class='icon ' src="assets/img/year.png" alt="">N/A
+                            </p>
+                        </ng-template>
+                    </div>
+                </div>
+                <h6 class='text-center font-weight-bold w-100 my-4'>Are you sure?</h6>
+                <div class="buttons-container w-100 d-flex justify-content-center">
+                    <button (click)='deleteMovie()' class="button btn btn-primary">Yes, delete</button>
+                    <button [routerLink]="['/movies']" class="button btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -17,6 +17,56 @@ export class MoviesService {
     headers.append("Authorization", "Bearer " + this.token);
     let opts = new RequestOptions();
     opts.headers = headers;
-    return this.http.get(this.url, opts).map(data => data.json());
+    return this.http
+      .get(this.url, opts)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+  getMovie(id: string): Observable<Movie> {
+    let headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.token);
+    let opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http
+      .get(this.url + "/" + id, opts)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+  addMovie(data: Movie): Observable<Movie> {
+    let headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.token);
+    let opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http
+      .post(this.url, data, opts)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+  updateMovie(id: string, data): Observable<Movie> {
+    let headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.token);
+    let opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http
+      .put(this.url + "/" + id, data, opts)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+  deleteMovie(id: string): Observable<Movie> {
+    let headers: Headers = new Headers();
+    headers.append("Authorization", "Bearer " + this.token);
+    let opts = new RequestOptions();
+    opts.headers = headers;
+    return this.http
+      .delete(this.url + "/" + id, opts)
+      .map(data => data.json())
+      .catch(this.handleError);
+  }
+  private handleError(error: any) {
+    let errMsg = error.message
+      ? error.message
+      : error.status ? `${error.status} - ${error.statusText}` : "Server error";
+    console.error(errMsg);
+    return Observable.throw(errMsg);
   }
 }

@@ -1,6 +1,44 @@
 <div class="container">
     <div class="white_box">
-        <h4 class="page_title text-center">Lista filmów</h4>
-        <div *ngFor='let movie of movies' class="list_item">{{movie.Title}}</div>
+        <div class="text-right">
+            <button [routerLink]="['/addMovie']" class="btn btn-success"><img class='icon'src="../../../assets/img/add.png">new movie</button>
+        </div>
+        <h4 class="page_title text-center font-weight-bold my-4">Movies list</h4>
+        <app-spinner *ngIf="loading"></app-spinner>
+        <div class="col-lg-8 offset-lg-2">
+            <div class="item" *ngFor='let movie of movies; let i = index'>
+                <div class="row">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h5 class="movie_title text-wrap font-weight-bold text-primary">{{movie.Title}}</h5>
+                                <p class='movie_rating font-weight-bold'>
+                                    Rating: {{ movie.Rating}}/10
+                                </p>
+                            </div>
+                            <div class="col-md-4 ">
+                                <p *ngIf='movie.Director.length!=0;else noDirector' class="movie_director d-flex flex-nowrap"><img class='icon icon_email' src="assets/img/director.png" alt="">{{movie.Director}}</p>
+                                <ng-template #noDirector>
+                                    <p class="movie_director d-flex flex-nowrap"><img class='icon ' src="assets/img/director.png" alt="">N/A</p>
+                                </ng-template>
+                                <p *ngIf='movie.Year.length!=0; else noYear' class="movie_year"><img class='icon' src="assets/img/year.png" alt="">{{movie.Year}}
+                                </p>
+                                <ng-template #noYear>
+                                    <p class="movie_year">
+                                        <img class='icon ' src="assets/img/year.png" alt="">N/A
+                                    </p>
+                                </ng-template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-3 text-right">
+                        <button (click)='editMovie(movie)' class="btn btn-success btn_edit"><img src="assets/img/edit.png" alt=""></button><br>
+                        <button (click)='deleteMovie(movie)' class="btn btn-danger btn_delete"><img src="assets/img/delete.png" alt=""></button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
+
 </div>

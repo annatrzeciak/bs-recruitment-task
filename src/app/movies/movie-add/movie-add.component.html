@@ -1,12 +1,12 @@
 <div class="container">
     <div class="white_box">
-        <h4 class="page_title text-center font-weight-bold mb-2">Edit movie</h4>
+        <h4 class="page_title text-center font-weight-bold mb-2">Add movie</h4>
         <div class="col-md-6 offset-md-3">
-            <form [formGroup]="movieEditForm">
+            <form [formGroup]="movieAddForm">
                 <div class="form-group">
                     <label>Title</label>
                     <input formControlName='title' type="text" class="form-control" placeholder="Shrek">
-                    <div class="alert alert-danger" *ngIf='  (formHasErrors && movieEditForm.controls.title.errors)||(movieEditForm.controls.title.touched && movieEditForm.controls.title.errors)'>Required field</div>
+                    <div class="alert alert-danger" *ngIf='  (formHasErrors && movieAddForm.controls.title.errors)||(movieAddForm.controls.title.touched && movieAddForm.controls.title.errors)'>Required field</div>
                 </div>
                 <div class="form-group">
                     <label>Year</label>
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="buttons-container d-flex justify-content-center ">
-                    <button (click)='updateMovie()' class="button btn btn-primary ">Save</button>
+                    <button (click)='addMovie()' class="button btn btn-primary ">Save</button>
                     <button [routerLink]="[ '/movies'] " class="button btn btn-secondary ">Cancel</button>
                 </div>
             </form>

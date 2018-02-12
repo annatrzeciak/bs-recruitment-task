@@ -18,10 +18,15 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { UserDeleteComponent } from './users/user-delete/user-delete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserAddComponent } from './users/user-add/user-add.component';
+import { MovieRoutingModule } from './movies/movie-routing.module';
+import { MovieDeleteComponent } from './movies/movie-delete/movie-delete.component';
+import { MovieEditComponent } from './movies/movie-edit/movie-edit.component';
+import { MovieResolve } from './movies/movie-resolve.service';
+import { MovieAddComponent } from './movies/movie-add/movie-add.component';
 
 @NgModule({
   declarations: [
-    AppComponent,MoviesComponent,UsersComponent,UserAddComponent,UserEditComponent,UserDeleteComponent,SpinnerComponent
+    AppComponent,MoviesComponent,MovieDeleteComponent,MovieEditComponent, MovieAddComponent, UsersComponent,UserAddComponent,UserEditComponent,UserDeleteComponent,SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -31,10 +36,11 @@ import { UserAddComponent } from './users/user-add/user-add.component';
     NgxPaginationModule,
     RouterModule,
     UserRoutingModule,
+    MovieRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [MoviesService,UsersService, UserResolve],
+  providers: [MoviesService,UsersService, UserResolve, MovieResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
