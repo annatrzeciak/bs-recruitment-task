@@ -11,9 +11,7 @@
             <div class="d-flex column">
                 <label for="colFormLabelSm" class="mr-2 col-form-label col-form-label">
           <img class='icon' src="assets/img/search.png">Search</label>
-
                 <input [(ngModel)]="searchText" type="text" class=" col-8 form-control form-control" id="colFormLabelSm" placeholder="enter title or director">
-
             </div>
 
             <app-spinner *ngIf="loading"></app-spinner>
@@ -42,18 +40,11 @@
                         </div>
                     </div>
                     <div class="col-3 text-right">
-                        <button (click)='editMovie(movie)' class="btn btn-success btn_edit">
-              <img src="assets/img/edit.png" alt="">
-            </button>
-                        <br>
-                        <button (click)='deleteMovie(movie)' class="btn btn-danger btn_delete">
-              <img src="assets/img/delete.png" alt="">
-            </button>
+                        <button (click)='editMovie(movie)' class="btn btn-success btn_edit"><img src="assets/img/edit.png" alt=""></button><br>
+                        <button (click)='deleteMovie(movie)' class="btn btn-danger btn_delete"><img src="assets/img/delete.png" alt=""></button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
 </div>
