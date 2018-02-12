@@ -6,7 +6,6 @@
         <img class='icon' src="assets/img/add.png">new movie</button>
         </div>
         <h4 class="page_title text-center font-weight-bold my-4">Movies list</h4>
-        <app-spinner *ngIf="loading"></app-spinner>
         <div class="col-lg-8 offset-lg-2">
 
             <div class="d-flex column">
@@ -17,7 +16,7 @@
 
             </div>
 
-
+            <app-spinner *ngIf="loading"></app-spinner>
             <div class="item" *ngFor='let movie of movies | filterMovies : searchText'>
                 <div class="row">
                     <div class="col-9">
